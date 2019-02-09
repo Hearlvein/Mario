@@ -11,7 +11,8 @@ Mario::~Mario()
 {
 
 }
-	
+
 void Mario::fire()
 {
 	std::cout << "Fire!" << std::endl;
+}
