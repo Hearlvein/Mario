@@ -41,16 +41,14 @@
 		<Linker>
 			<Add directory="C:/Users/james/Contacts/Documents/C++/SFML-2.5.1/lib" />
 		</Linker>
-		<Unit filename="Animator.cpp" />
-		<Unit filename="Animator.h" />
-		<Unit filename="Box.cpp" />
-		<Unit filename="Box.h" />
 		<Unit filename="Entity.cpp" />
 		<Unit filename="Entity.h" />
+		<Unit filename="Game.cpp" />
+		<Unit filename="Game.h" />
+		<Unit filename="Map.h" />
 		<Unit filename="Mario.cpp" />
 		<Unit filename="Mario.h" />
-		<Unit filename="Sokoban.cpp" />
-		<Unit filename="Sokoban.h" />
+		<Unit filename="TileType.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
