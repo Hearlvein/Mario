@@ -45,6 +45,7 @@
 		<Unit filename="Entity.h" />
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.h" />
+		<Unit filename="Map.cpp" />
 		<Unit filename="Map.h" />
 		<Unit filename="Mario.cpp" />
 		<Unit filename="Mario.h" />
