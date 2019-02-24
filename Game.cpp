@@ -28,6 +28,16 @@ void Game::processEvents(sf::RenderWindow& window)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		m_mario.fire();
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		m_mario.goLeft();
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		m_mario.goRight();
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		m_mario.goUp();
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		m_mario.goDown();
 }
 
 void Game::update(const sf::Time& dt)

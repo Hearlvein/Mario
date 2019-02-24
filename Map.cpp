@@ -58,10 +58,10 @@ void Map::set(unsigned int x, unsigned int y, TileType type)
 
 	// Actualize tile texture coords
 	sf::Vertex* quad = &m_vertices[(x + y * m_width) * 4];
-	quad[0].texCoords = m_tileSize * sf::Vector2f((int)m_grid[x][y], 1);
-	quad[1].texCoords = m_tileSize * sf::Vector2f((int)m_grid[x][y]+1, 1);
-	quad[2].texCoords = m_tileSize * sf::Vector2f((int)m_grid[x][y]+1, 2);
-	quad[3].texCoords = m_tileSize * sf::Vector2f((int)m_grid[x][y], 2);
+	quad[0].texCoords = m_tileSize * sf::Vector2f((int)type, 1);
+	quad[1].texCoords = m_tileSize * sf::Vector2f((int)type+1, 1);
+	quad[2].texCoords = m_tileSize * sf::Vector2f((int)type+1, 2);
+	quad[3].texCoords = m_tileSize * sf::Vector2f((int)type, 2);
 }
 
 void Map::draw(sf::RenderTarget& target, sf::RenderStates& states)
