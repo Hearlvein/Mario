@@ -36,10 +36,10 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="C:/Users/james/Contacts/Documents/C++/SFML-2.5.1/include" />
+			<Add directory="C:/Users/james/Contacts/Documents/Cpp/SFML-2.5.1/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="C:/Users/james/Contacts/Documents/C++/SFML-2.5.1/lib" />
+			<Add directory="C:/Users/james/Contacts/Documents/Cpp/SFML-2.5.1/lib" />
 		</Linker>
 		<Unit filename="Entity.cpp" />
 		<Unit filename="Entity.h" />

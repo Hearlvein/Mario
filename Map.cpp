@@ -1,18 +1,30 @@
 #include "Map.h"
 #include <iostream>
 
-
 Map::Map()
 {
-
 }
 
 Map::~Map()
 {
-
 }
 
-void Map::load(const std::string& level_file)
+const unsigned int Map::getWidth() const
+{
+	return m_width;
+}
+
+const unsigned int Map::getHeight() const
+{
+	return m_height;
+}
+
+const float Map::getTileSize() const
+{
+	return m_tileSize;
+}
+
+void Map::load(const std::string &level_file)
 {
 	m_width = 20;
 	m_height = 10;
@@ -23,7 +35,7 @@ void Map::load(const std::string& level_file)
 		m_grid[i].resize(m_height);
 
 		for (std::size_t j = 0; j < m_height; ++j)
-            m_grid[i][j] = Void;
+			m_grid[i][j] = Void;
 	}
 
 	m_vertices.setPrimitiveType(sf::Quads);
@@ -32,15 +44,15 @@ void Map::load(const std::string& level_file)
 	{
 		for (std::size_t j = 0; j < m_height; ++j)
 		{
-			sf::Vertex* quad = &m_vertices[(i + j * m_width) * 4];
+			sf::Vertex *quad = &m_vertices[(i + j * m_width) * 4];
 			quad[0].position = m_tileSize * sf::Vector2f(i, j);
-			quad[1].position = m_tileSize * sf::Vector2f(i+1, j);
-			quad[2].position = m_tileSize * sf::Vector2f(i+1, j+1);
-			quad[3].position = m_tileSize * sf::Vector2f(i, j+1);
+			quad[1].position = m_tileSize * sf::Vector2f(i + 1, j);
+			quad[2].position = m_tileSize * sf::Vector2f(i + 1, j + 1);
+			quad[3].position = m_tileSize * sf::Vector2f(i, j + 1);
 
 			quad[0].texCoords = m_tileSize * sf::Vector2f((int)m_grid[i][j], 1);
-			quad[1].texCoords = m_tileSize * sf::Vector2f((int)m_grid[i][j]+1, 1);
-			quad[2].texCoords = m_tileSize * sf::Vector2f((int)m_grid[i][j]+1, 2);
+			quad[1].texCoords = m_tileSize * sf::Vector2f((int)m_grid[i][j] + 1, 1);
+			quad[2].texCoords = m_tileSize * sf::Vector2f((int)m_grid[i][j] + 1, 2);
 			quad[3].texCoords = m_tileSize * sf::Vector2f((int)m_grid[i][j], 2);
 		}
 	}
@@ -48,23 +60,33 @@ void Map::load(const std::string& level_file)
 
 const TileType& Map::at(unsigned int x, unsigned int y) const
 {
-	std::cout << "map::at read-only" << std::endl;
-	return m_grid[x][y];
+	//std::cout << "map::at read-only" << std::endl;
+
+	if (x < m_width && y < m_height)
+		return m_grid[x][y];
+	else
+	{
+		std::cout << "Trying to access cell out: " << x << ";" << y << std::endl;
+		return m_grid[0][0];
+	}
 }
 
 void Map::set(unsigned int x, unsigned int y, TileType type)
 {
+	if (type == m_grid[x][y])
+		return;
+
 	m_grid[x][y] = type;
 
 	// Actualize tile texture coords
-	sf::Vertex* quad = &m_vertices[(x + y * m_width) * 4];
+	sf::Vertex *quad = &m_vertices[(x + y * m_width) * 4];
 	quad[0].texCoords = m_tileSize * sf::Vector2f((int)type, 1);
-	quad[1].texCoords = m_tileSize * sf::Vector2f((int)type+1, 1);
-	quad[2].texCoords = m_tileSize * sf::Vector2f((int)type+1, 2);
+	quad[1].texCoords = m_tileSize * sf::Vector2f((int)type + 1, 1);
+	quad[2].texCoords = m_tileSize * sf::Vector2f((int)type + 1, 2);
 	quad[3].texCoords = m_tileSize * sf::Vector2f((int)type, 2);
 }
 
-void Map::draw(sf::RenderTarget& target, sf::RenderStates& states)
+void Map::draw(sf::RenderTarget &target, sf::RenderStates &states)
 {
 	target.draw(m_vertices, states);
 }

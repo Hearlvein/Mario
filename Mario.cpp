@@ -1,15 +1,15 @@
 #include "Mario.h"
 #include <iostream>
 
-Mario::Mario(const sf::Texture& texture, const sf::IntRect& rectangle, const sf::Vector2f& position, const sf::Vector2f& velocity) :
-	Entity(texture, rectangle, position, velocity)
+Mario::Mario() : Entity()
 {
-
+	setTexture(sf::Texture());
+	setTextureRect(sf::IntRect(0, 0, 50, 50));
+	setPosition(250, 100);
 }
 
 Mario::~Mario()
 {
-
 }
 
 void Mario::fire()

@@ -6,25 +6,25 @@
 #include "Entity.h"
 #include "Mario.h"
 
-
 class Game
 {
-public:
+  public:
 	Game();
 	~Game();
 
-	void processEvents(sf::RenderWindow& window);
-	void update(const sf::Time& dt);
-	void render(sf::RenderTarget& target);
+	const sf::VideoMode getWindowSize() const;
+	void processEvents(sf::RenderWindow &window);
+	void update(float dt, sf::RenderWindow &window);
+	void render(sf::RenderTarget &target);
 
-protected:
+	void moveEntity(Entity& entity, sf::Vector2f movement);
+	bool xTranslate(Entity& entity, float xOffset);
+	bool yTranslate(Entity& entity, float yOffset);
+
+  private:
 	sf::Texture m_texture;
-
 	Map m_map;
-
-	// List structure:
-	// 		[0]: mario
-	// 		else: mobs
 	Mario m_mario;
-	std::list<Entity*> m_entities;
+
+	sf::RectangleShape m_marioCollider;
 };

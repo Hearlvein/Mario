@@ -11,6 +11,9 @@ class Map
 	Map();
 	~Map();
 
+	const unsigned int getWidth() const;
+	const unsigned int getHeight() const;
+	const float getTileSize() const;
 	void load(const std::string &level_file);
 	const TileType &at(unsigned int x, unsigned int y) const;
 	void set(unsigned int x, unsigned int y, TileType type);
